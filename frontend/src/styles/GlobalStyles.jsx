@@ -4,14 +4,14 @@ const GlobalStyles = createGlobalStyle`
     * {
         box-sizing: border-box;
         margin: 0;
-        padding: 0;
         outline: 0;
+        padding: 0;
     }
 
     #root {
+        background-color: #bebcbc;
         min-height: 100vh;
         width: 100%;
-        background-color: #bebcbc;
     }
 
     button {
