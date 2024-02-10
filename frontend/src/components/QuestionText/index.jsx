@@ -1,6 +1,8 @@
+import { QuestionTextContainerStyled } from "./styles";
+
 const QuestionText = ({ children }) => {
 	return (
-		<h4>{children}</h4>
+		<QuestionTextContainerStyled>{children}</QuestionTextContainerStyled>
 	);
 };
 

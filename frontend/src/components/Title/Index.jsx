@@ -1,6 +1,8 @@
+import { TitleContainerStyled } from "./styles";
+
 const Title = ({ children }) => {
 	return (
-		<h2>{children}</h2>
+		<TitleContainerStyled>{children}</TitleContainerStyled>
 	);
 };
 

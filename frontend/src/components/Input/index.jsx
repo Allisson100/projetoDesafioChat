@@ -1,10 +1,17 @@
-const Input = ({ type, placeholder, autocomplete }) => {
+import { InputContainerStyled, InputStyled, SpanStyled } from "./styles";
+
+const Input = ({ type, placeholder, placeholderColor, autocomplete, errorMessage }) => {
 	return (
-		<input 
-			type={type} 
-			placeholder={placeholder} 
-			autoComplete={autocomplete} 
-		/>
+		<InputContainerStyled>
+			<InputStyled 
+				type={type} 
+				placeholder={placeholder} 
+				autoComplete={autocomplete}
+				$placeholderColor={placeholderColor}
+			/>
+			<SpanStyled>{errorMessage}</SpanStyled>
+		</InputContainerStyled>
+		
 	);
 };
 

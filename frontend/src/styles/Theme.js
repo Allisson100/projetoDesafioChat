@@ -2,14 +2,17 @@ const theme = {
 	shadesBlue: {
 		fontColors: {
 			primary: "#ffffff",
-			secundary: "#000000"
+			secundary: "#000000",
+			tertiary: "#0306ae",
+			quaternary: "#1567b9",
 		},
 
 		bgColors: {
-			primary: "#0D47A1",
-			secundary: "#2196F3",
+			primary: "#0e2ee3",
+			secundary: "#78b8ec",
 			tertiary: "#00ACC1",
-			quaternary: "#1976D2"
+			quaternary: "#1976D2",
+			quinternary: "#ffffff",
 		},
 
 		fonts: {

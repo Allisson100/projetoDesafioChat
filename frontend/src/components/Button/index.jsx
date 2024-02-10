@@ -1,6 +1,8 @@
-const Button = ({ color = "blue", type, children }) => {
+import { ButtonContainerStyled } from "./styles";
+
+const Button = ({ bgColor, type, children }) => {
 	return (
-		<button style={{ backgroundColor: `${color}` }} type={type}>{children}</button>
+		<ButtonContainerStyled $bgColor={bgColor} type={type}>{children}</ButtonContainerStyled>
 	);
 };
 

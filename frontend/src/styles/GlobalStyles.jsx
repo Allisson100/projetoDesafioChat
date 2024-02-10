@@ -6,16 +6,16 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
         outline: 0;
         padding: 0;
+        border: none;
     }
 
     #root {
-        background-color: #bebcbc;
+        background-color: #ffffff;
         min-height: 100vh;
         width: 100%;
     }
 
     button {
-        border: none;
         cursor: pointer;
     }
 `;
