@@ -6,17 +6,21 @@ import { Server } from "socket.io";
 
 import "./db/dbConnect.js";
 
-const app = express();
 // eslint-disable-next-line
-const port = process.env.port || 3000;
+const PORT = process.env.port || 3000;
 
+const app = express();
 const httpServer = http.createServer(app);
 
-httpServer.listen(port, () => {
-	console.log(`Server running! Port: ${port}`);
+const io = new Server(httpServer, {
+	cors: {
+		origin: "*",
+	}
 });
 
-const io = new Server;
+httpServer.listen(PORT, () => {
+	console.log(`Server running! Port: ${PORT}`);
+});
 
 export default io;
 
