@@ -2,16 +2,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import { useEffect } from "react";
 import webSocketConnection from "./common/config/webSocketConnection";
+import webSocketDisconnection from "./common/config/webSocketDisconnection";
+
+const serverEndpoint = "http://localhost:3000";
 
 const Router = () => {
 
 	useEffect(() => {
 
-		webSocketConnection.clientConnected;
-		webSocketConnection.clientDisconnected;
+		webSocketConnection(serverEndpoint);
 
 		return () => {
-			webSocketConnection.disconnectServer;
+			webSocketDisconnection(serverEndpoint);
 		};
 	}, []);
 
