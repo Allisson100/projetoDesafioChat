@@ -1,8 +1,8 @@
 import { InputContainerStyled } from "./styles";
 
-const InputContainer = ({ children }) => {
+const InputContainer = ({ children, marginBottom }) => {
 	return (
-		<InputContainerStyled>
+		<InputContainerStyled $marginBottom={marginBottom}>
 			{children}
 		</InputContainerStyled>
 	);

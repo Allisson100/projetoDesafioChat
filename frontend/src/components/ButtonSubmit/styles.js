@@ -14,7 +14,6 @@ const ButtonContainerStyled = styled.button`
     max-width: 14.25rem;
     min-width: 12.25rem;
     transition: 0.2s;
-    
 
     &:hover {
         transform: scale(1.05);

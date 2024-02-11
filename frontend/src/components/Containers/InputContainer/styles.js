@@ -7,6 +7,10 @@ const InputContainerStyled = styled.div`
     gap: 1.2rem;
     justify-content: center;
     width: 100%;
+
+    @media screen and (min-width: 1025px) {
+        margin-bottom: ${props => props.$marginBottom ? "5rem" : "0"};
+    }
 `;
 
 export {

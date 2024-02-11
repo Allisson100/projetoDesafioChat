@@ -4,7 +4,11 @@ import styled from "styled-components";
 const TextContainerStyles = styled.div`
     display: none;
 
+<<<<<<< HEAD
     @media screen and (max-width: 870px) {
+=======
+    @media screen and (max-width: 1024px) {
+>>>>>>> front_Refatoracao
         align-items: center;
         display: flex;
         flex-direction: column;
