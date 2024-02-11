@@ -16,6 +16,7 @@ const InputStyled = styled.input`
     font-size: 1.2rem;
     height: 3.5rem;
     line-height: 1.5rem;
+    outline: ${props => props.$errorMessage ? "3px solid red" : "none"};
     padding: 1rem;
     width: 100%;
 

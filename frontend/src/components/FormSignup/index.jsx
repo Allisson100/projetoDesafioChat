@@ -1,47 +1,74 @@
-import Button from "../Button";
+import { useFormik } from "formik";
 import InputContainer from "../Containers/InputContainer";
 import FormText from "../FormText";
 import Input from "../Input";
 import { FormContainerStyled } from "./styles";
+import signupValidation from "../../common/validations/signupValidation";
+import ButtonSubmit from "../ButtonSubmit";
 
 const FormSignup = () => {
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
+	const formik = useFormik({
+		initialValues: {
+			username: "",
+			repeatUsername: "",
+			password: "",
+			repeatPassword: "",
+		},
+		validationSchema: signupValidation(),
+		onSubmit: (values, { resetForm }) => {
+			console.log(values);
 
-		console.log("Form do Signup");
-	};
+			resetForm();
+		}
+	});
 
 	return (
-		<FormContainerStyled onSubmit={handleSubmit}>
+		<FormContainerStyled onSubmit={formik.handleSubmit}>
 			<InputContainer>
-				<Input 
+				<Input
+					name="username"
 					type="text" 
 					placeholder="Digite seu nome de usuário" 
 					placeholderColor = {props => props.theme.bgColors.secundary}
 					autocomplete="username"
-					errorMessage="Por favor, insira um nome válido" 
+					errorMessage={formik.touched.username && formik.errors.username}
+					onChange={formik.handleChange}
+					onBlur={formik.handleBlur}
+					value={formik.values.username}
 				/>
 				<Input 
+					name="repeatUsername"
 					type="text" 
 					placeholder="Repita seu nome de usuário" 
 					placeholderColor = {props => props.theme.bgColors.secundary}
 					autocomplete="username"
-					errorMessage="Por favor, insira um nome válido" 
+					errorMessage={formik.touched.repeatUsername && formik.errors.repeatUsername}
+					onChange={formik.handleChange}
+					onBlur={formik.handleBlur}
+					value={formik.values.repeatUsername}
 				/>
-				<Input 
+				<Input
+					name="password" 
 					type="password" 
 					placeholderColor = {props => props.theme.bgColors.secundary}
 					placeholder="Digite sua senha" 
 					autocomplete="current-password"
-					errorMessage="Por favor, insira uma senha válida" 
+					errorMessage={formik.touched.password && formik.errors.password}
+					onChange={formik.handleChange}
+					onBlur={formik.handleBlur}
+					value={formik.values.password}
 				/>
 				<Input 
+					name="repeatPassword"
 					type="password" 
 					placeholderColor = {props => props.theme.bgColors.secundary}
 					placeholder="Repita sua senha" 
 					autocomplete="current-password"
-					errorMessage="Por favor, insira uma senha válida" 
+					errorMessage={formik.touched.repeatPassword && formik.errors.repeatPassword}
+					onChange={formik.handleChange}
+					onBlur={formik.handleBlur}
+					value={formik.values.repeatPassword}
 				/>
 			</InputContainer>
 			<FormText 
@@ -49,7 +76,11 @@ const FormSignup = () => {
 				to = "/login"
 				linkText= "Iniciar sessão"
 			/>			
-			<Button bgColor={props => props.theme.bgColors.primary} type="submit">Criar nova conta</Button>
+			<ButtonSubmit 
+				bgColor={props => props.theme.bgColors.primary}
+			>
+				Criar nova conta
+			</ButtonSubmit>
 		</FormContainerStyled>
 	);
 };

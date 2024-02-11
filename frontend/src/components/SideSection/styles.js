@@ -23,7 +23,7 @@ const ButtonAndQuestionContainerStyled = styled.div`
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     justify-content: center;
     width: 100%;
 `;
