@@ -1,17 +1,17 @@
 import Button from "../Button";
-import DefaultContainer from "../DefaultContainer";
+import DefaultContainer from "../Containers/DefaultContainer";
 import QuestionText from "../QuestionText";
 import Title from "../Title/Index";
 import { ButtonAndQuestionContainerStyled, SideSectionContainerStyled } from "./styles";
 
-const SideSection = () => {
+const SideSection = ({ titleText, questionText, buttonText }) => {
 	return (
 		<SideSectionContainerStyled>
 			<DefaultContainer>
-				<Title>bem-vindo de volta!</Title>
+				<Title>{titleText}</Title>
 				<ButtonAndQuestionContainerStyled>
-					<QuestionText>Não tem uma conta ainda?</QuestionText>
-					<Button bgColor={props => props.theme.bgColors.quinternary}>Criar nova conta</Button>
+					<QuestionText>{questionText}</QuestionText>
+					<Button bgColor={props => props.theme.bgColors.quinternary}>{buttonText}</Button>
 				</ButtonAndQuestionContainerStyled>
 			</DefaultContainer>
 		</SideSectionContainerStyled>

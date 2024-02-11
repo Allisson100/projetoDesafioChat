@@ -14,32 +14,32 @@ const FormSectionContainerStyled = styled.section`
     }
 `;
 
-const SetSizeContainerStyled = styled.div`
+const SetSizeStyled = styled.div`
     align-items: center;
     display: flex;
     min-height: 100%;
     padding: 3rem;
     width: 60%;
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 1180px) {
         width: 100%;
     }
 `;
 
-const SubtitlesContainerStyled = styled.div`
+const SetPositionSubtitlesStyled = styled.div`
     align-items: center;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     justify-content: center;
 
-    @media screen and (max-width: 870px) {
+    @media screen and (max-width: 1025px) {
         margin-bottom: 2rem;
     }
 `;
 
 export {
 	FormSectionContainerStyled,
-	SetSizeContainerStyled,
-	SubtitlesContainerStyled,
+	SetSizeStyled,
+	SetPositionSubtitlesStyled,
 };

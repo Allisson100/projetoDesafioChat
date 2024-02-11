@@ -1,11 +1,13 @@
 import Button from "../Button";
+import FormContainer from "../Containers/FormContainer";
+import InputContainer from "../Containers/InputContainer";
 import Input from "../Input";
-import { FormContainerStyled, InputContainerStyled, TextStyled } from "./styles";
+import { LinkStyled, TextContainerStyles, TextStyled } from "./styles";
 
-const FormLogin = () => {
+const FormLogin = ({ text, linkText, to }) => {
 	return (
-		<FormContainerStyled>
-			<InputContainerStyled>
+		<FormContainer>
+			<InputContainer>
 				<Input 
 					type="text" 
 					placeholder="Digite seu nome de usuário" 
@@ -20,10 +22,14 @@ const FormLogin = () => {
 					autocomplete="current-password"
 					errorMessage="Por favor, insira uma senha válida" 
 				/>
-			</InputContainerStyled>
-			<TextStyled>Não tem uma conta ainda?<a href="/"> Inscreva-se</a></TextStyled>
+			</InputContainer>
+			<TextContainerStyles>
+				<TextStyled>{text}</TextStyled>
+				<LinkStyled to={to}>{linkText}</LinkStyled>
+			</TextContainerStyles>
+			
 			<Button bgColor={props => props.theme.bgColors.primary} type="submit">Iniciar Sessão</Button>
-		</FormContainerStyled>
+		</FormContainer>
 	);
 };
 

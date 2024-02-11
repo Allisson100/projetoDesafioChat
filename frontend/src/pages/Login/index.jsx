@@ -1,13 +1,26 @@
 import FormSection from "../../components/FormSection";
 import SideSection from "../../components/SideSection";
-import { LoginContainerStyled } from "./styles";
+import MainContainer from "../../components/Containers/MainContainer";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
+
+	const { pathname } = useLocation();
+
+	console.log(pathname);
+
 	return (
-		<LoginContainerStyled>
-			<FormSection />
-			<SideSection />
-		</LoginContainerStyled>
+		<MainContainer>
+			<FormSection 
+				message="Iniciar Sessão"
+				path={pathname}
+			/>
+			<SideSection 
+				titleText="bem-vindo de volta!"
+				questionText="Não tem uma conta ainda?"
+				buttonText="Criar nova conta"
+			/>
+		</MainContainer>
 	);
 };
 
