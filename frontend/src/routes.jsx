@@ -4,17 +4,16 @@ import webSocketConnection from "./common/config/webSocketConnection";
 import webSocketDisconnection from "./common/config/webSocketDisconnection";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-
-const serverEndpoint = "http://localhost:3000";
+import "./services/webSocketListenEvents";
 
 const Router = () => {
 
 	useEffect(() => {
 
-		webSocketConnection(serverEndpoint);
+		webSocketConnection();
 
 		return () => {
-			webSocketDisconnection(serverEndpoint);
+			webSocketDisconnection();
 		};
 	}, []);
 

@@ -5,6 +5,7 @@ import Input from "../Input";
 import { FormContainerStyled } from "./styles";
 import signupValidation from "../../common/validations/signupValidation";
 import ButtonSubmit from "../ButtonSubmit";
+import webSocketEvents from "../../services/webSocketEmitEvents";
 
 const FormSignup = () => {
 
@@ -17,8 +18,7 @@ const FormSignup = () => {
 		},
 		validationSchema: signupValidation(),
 		onSubmit: (values, { resetForm }) => {
-			console.log(values);
-
+			webSocketEvents.addUserDb(values);
 			resetForm();
 		}
 	});
