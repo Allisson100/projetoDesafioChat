@@ -1,6 +1,7 @@
 import FormSection from "../../components/FormSection";
 import SideSection from "../../components/SideSection";
 import MainContainer from "../../components/Containers/MainContainer";
+import Logo from "../../components/Logo";
 import { useLocation } from "react-router-dom";
 
 const Login = () => {
@@ -11,6 +12,10 @@ const Login = () => {
 
 	return (
 		<MainContainer>
+			<Logo 
+				right = "none"
+				left  = "5%"
+			/>
 			<FormSection 
 				message="Iniciar Sessão"
 				path={pathname}

@@ -9,5 +9,5 @@ const FormContainerStyled = styled.form`
 `;
 
 export {
-	FormContainerStyled,
+	FormContainerStyled
 };

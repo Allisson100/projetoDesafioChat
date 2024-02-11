@@ -6,7 +6,6 @@ const FormSectionContainerStyled = styled.section`
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
-    position: relative;
     width: 70%;
 
     @media screen and (max-width: 870px) {
@@ -32,10 +31,7 @@ const SetPositionSubtitlesStyled = styled.div`
     flex-direction: column;
     gap: 0.5rem;
     justify-content: center;
-
-    @media screen and (max-width: 1025px) {
-        margin-bottom: 2rem;
-    }
+    margin-bottom: 2rem;
 `;
 
 export {

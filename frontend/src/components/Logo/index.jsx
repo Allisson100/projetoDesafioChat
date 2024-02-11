@@ -1,9 +1,12 @@
 import { FirstTextStyled, LogoContainerStyled, SecondTextStyled } from "./styles.";
 import { RiWechat2Fill } from "react-icons/ri";
 
-const Logo = () => {
+const Logo = ({ right, left }) => {
 	return (
-		<LogoContainerStyled>
+		<LogoContainerStyled
+			$rigth={right}
+			$left={left}
+		>
 			<FirstTextStyled>chat</FirstTextStyled>
 			<SecondTextStyled>
 				<RiWechat2Fill />

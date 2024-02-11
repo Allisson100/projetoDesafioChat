@@ -1,8 +1,14 @@
 import { ButtonContainerStyled } from "./styles";
 
-const Button = ({ bgColor, type = "button", children }) => {
+const Button = ({ bgColor, type, children }) => {
+
 	return (
-		<ButtonContainerStyled $bgColor={bgColor} type={type}>{children}</ButtonContainerStyled>
+		<ButtonContainerStyled 
+			$bgColor={bgColor} 
+			type={type}
+		>
+			{children}
+		</ButtonContainerStyled>
 	);
 };
 

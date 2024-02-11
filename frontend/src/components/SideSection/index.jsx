@@ -11,7 +11,11 @@ const SideSection = ({ titleText, questionText, buttonText }) => {
 				<Title>{titleText}</Title>
 				<ButtonAndQuestionContainerStyled>
 					<QuestionText>{questionText}</QuestionText>
-					<Button bgColor={props => props.theme.bgColors.quinternary}>{buttonText}</Button>
+					<Button
+						bgColor={props => props.theme.bgColors.quinternary}
+					>
+						{buttonText}
+					</Button>
 				</ButtonAndQuestionContainerStyled>
 			</DefaultContainer>
 		</SideSectionContainerStyled>

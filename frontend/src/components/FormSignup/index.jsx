@@ -4,12 +4,12 @@ import FormText from "../FormText";
 import Input from "../Input";
 import { FormContainerStyled } from "./styles";
 
-const FormLogin = () => {
+const FormSignup = () => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		console.log("Form do Login");
+		console.log("Form do Signup");
 	};
 
 	return (
@@ -23,21 +23,35 @@ const FormLogin = () => {
 					errorMessage="Por favor, insira um nome válido" 
 				/>
 				<Input 
+					type="text" 
+					placeholder="Repita seu nome de usuário" 
+					placeholderColor = {props => props.theme.bgColors.secundary}
+					autocomplete="username"
+					errorMessage="Por favor, insira um nome válido" 
+				/>
+				<Input 
 					type="password" 
 					placeholderColor = {props => props.theme.bgColors.secundary}
 					placeholder="Digite sua senha" 
 					autocomplete="current-password"
 					errorMessage="Por favor, insira uma senha válida" 
 				/>
+				<Input 
+					type="password" 
+					placeholderColor = {props => props.theme.bgColors.secundary}
+					placeholder="Repita sua senha" 
+					autocomplete="current-password"
+					errorMessage="Por favor, insira uma senha válida" 
+				/>
 			</InputContainer>
 			<FormText 
-				text = "Não tem uma conta ainda?"
-				to = "/signup"
-				linkText= "Inscreva-se"
+				text = "Já tem uma conta"
+				to = "/login"
+				linkText= "Iniciar sessão"
 			/>			
-			<Button bgColor={props => props.theme.bgColors.primary} type="submit">Iniciar Sessão</Button>
+			<Button bgColor={props => props.theme.bgColors.primary} type="submit">Criar nova conta</Button>
 		</FormContainerStyled>
 	);
 };
 
-export default FormLogin;
+export default FormSignup;

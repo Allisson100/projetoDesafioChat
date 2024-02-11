@@ -5,9 +5,10 @@ const LogoContainerStyled = styled.h1`
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    left: 10%;
+    left: ${props => props.$left};
     padding: 0.5rem;
     position: absolute;
+    right: ${props => props.$rigth};
     top: 5%;
 
     @media screen and (max-width: 700px) {
