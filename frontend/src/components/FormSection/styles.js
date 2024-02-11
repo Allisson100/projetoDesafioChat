@@ -9,7 +9,7 @@ const FormSectionContainerStyled = styled.section`
     position: relative;
     width: 70%;
 
-    @media screen and (max-width: 870px) {
+    @media screen and (max-width: 10242px) {
         width: 100%;
     }
 `;

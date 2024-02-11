@@ -5,20 +5,17 @@ const DefaultContainerStyled = styled.div`
     flex-direction: column;
     gap: 30%;
     justify-content: space-between;
-    min-height: 75%;
+    min-height: 100%;
     width: 100%;
 
-    @media screen and (max-width: 1025px) {
-        justify-content: unset;
-    }
-
-    @media screen and (max-width: 700px) {
-        gap: 4rem;
-        justify-content: initial;
+    @media screen and (min-width: 600px) and (max-width: 1024px) {
+        min-height: 55%;
     }
 
     @media screen and (max-width: 700px) {
         min-height: 100%;
+        gap: 4rem;
+        justify-content: initial;
     }
 `;
 

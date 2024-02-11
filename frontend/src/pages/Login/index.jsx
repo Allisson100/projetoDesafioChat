@@ -19,6 +19,7 @@ const Login = () => {
 				titleText="bem-vindo de volta!"
 				questionText="Não tem uma conta ainda?"
 				buttonText="Criar nova conta"
+				buttonLinkTo="/signup"
 			/>
 		</MainContainer>
 	);
