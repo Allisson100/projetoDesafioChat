@@ -20,10 +20,7 @@ const Signup = () => {
 				titleText="comece uma nova jornada!"
 				questionText="Já tem uma conta ainda?"
 				buttonText="Iniciar sessão"
-<<<<<<< HEAD
-=======
 				buttonLinkTo="/login"
->>>>>>> front_Refatoracao
 			/>
 			<FormSection 
 				message="Criar conta"

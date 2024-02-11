@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import Button from "../Button";
-=======
-import ButtonSubmit from "../ButtonSubmit";
->>>>>>> front_Refatoracao
 import InputContainer from "../Containers/InputContainer";
 import FormText from "../FormText";
 import Input from "../Input";
@@ -49,23 +45,11 @@ const FormSignup = () => {
 				/>
 			</InputContainer>
 			<FormText 
-<<<<<<< HEAD
 				text = "Já tem uma conta"
 				to = "/login"
 				linkText= "Iniciar sessão"
 			/>			
 			<Button bgColor={props => props.theme.bgColors.primary} type="submit">Criar nova conta</Button>
-=======
-				text = "Já tem uma conta?"
-				to = "/login"
-				linkText= "Iniciar sessão"
-			/>			
-			<ButtonSubmit 
-				bgColor={props => props.theme.bgColors.primary}
-			>
-				Criar nova conta
-			</ButtonSubmit>
->>>>>>> front_Refatoracao
 		</FormContainerStyled>
 	);
 };

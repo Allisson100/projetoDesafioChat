@@ -11,24 +11,12 @@ const SideSection = ({ titleText, questionText, buttonText, buttonLinkTo }) => {
 				<Title>{titleText}</Title>
 				<ButtonAndQuestionContainerStyled>
 					<QuestionText>{questionText}</QuestionText>
-<<<<<<< HEAD
-					<Button
-						bgColor={props => props.theme.bgColors.quinternary}
-					>
-						{buttonText}
-					</Button>
-=======
-<<<<<<< Updated upstream
-					<Button bgColor={props => props.theme.bgColors.quinternary}>{buttonText}</Button>
-=======
 					<Button
 						bgColor={props => props.theme.bgColors.quinternary}
 						to={buttonLinkTo}
 					>
 						{buttonText}
 					</Button>
->>>>>>> Stashed changes
->>>>>>> front_Refatoracao
 				</ButtonAndQuestionContainerStyled>
 			</DefaultContainer>
 		</SideSectionContainerStyled>
