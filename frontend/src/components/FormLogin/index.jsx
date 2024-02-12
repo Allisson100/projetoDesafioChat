@@ -16,7 +16,6 @@ const FormLogin = () => {
 		validationSchema: loginValidation(),
 		onSubmit: (values, { resetForm }) => {
 			console.log(values);
-
 			resetForm();
 		}
 	});

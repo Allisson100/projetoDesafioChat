@@ -10,6 +10,10 @@ const webSocketEvents = {
 		};
 
 		socket.emit("add_user_db", newUserDatas);
+	},
+
+	authUser: (userLoginDatas) => {
+		socket.emit("auth_user", userLoginDatas);
 	}
 };
 

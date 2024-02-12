@@ -16,7 +16,6 @@ const authSlice = createSlice({
 		getTokenCookie: (state, { payload }) => {
 
 			//A chave do cookie é o payload
-
 			const token = document.cookie
 				.split("; ")
 				.find((cookie) => cookie.startsWith(`${payload}=`))
@@ -40,6 +39,6 @@ const authSlice = createSlice({
 	}
 });
 
-export const { getTokenCookie } = authSlice.actions;
+export const { addTokenCookie, getTokenCookie, removeTokenCookie } = authSlice.actions;
 
 export default authSlice.reducer;

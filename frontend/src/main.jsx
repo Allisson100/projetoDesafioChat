@@ -4,12 +4,16 @@ import GlobalStyles from "./styles/GlobalStyles.jsx";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/Theme.js";
 import Router from "./routes.jsx";
+import { Provider } from "react-redux";
+import store from "./store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<ThemeProvider theme={theme.shadesBlue}>
-			<GlobalStyles />
-			<Router />
-		</ThemeProvider>
+		<Provider store={store}>
+			<ThemeProvider theme={theme.shadesBlue}>
+				<GlobalStyles />
+				<Router />
+			</ThemeProvider>
+		</Provider>
 	</React.StrictMode>,
 );
