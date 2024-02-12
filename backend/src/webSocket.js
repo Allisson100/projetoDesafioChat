@@ -15,6 +15,22 @@ io.on("connection", (socket) => {
 
 		if(result.acknowledged) {
 			socket.emit("add_user_db_success");
+
+			const user = await userController.findUserDb(userDatas.username);
+			if(user) {
+
+				const auth = authUser(userDatas.password, user);
+
+				if(auth) {
+					const jwtToken = createJwt({ username: userDatas.username });
+					socket.emit("auth_success", jwtToken);
+				} else {
+					socket.emit("auth_error");
+				}
+			} else {
+				socket.emit("user_not_found");
+			}
+			
 		} else {
 			socket.emit("add_user_db_error");
 		}
