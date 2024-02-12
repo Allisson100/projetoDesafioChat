@@ -16,8 +16,8 @@ const FormLogin = () => {
 		},
 		validationSchema: loginValidation(),
 		onSubmit: (values, { resetForm }) => {
-			webSocketEvents.authUser(values);
 			resetForm();
+			webSocketEvents.authUser(values);
 		}
 	});
 

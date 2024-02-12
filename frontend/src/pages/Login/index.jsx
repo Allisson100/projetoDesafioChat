@@ -8,8 +8,6 @@ const Login = () => {
 
 	const { pathname } = useLocation();
 
-	console.log(pathname);
-
 	return (
 		<MainContainer>
 			<Logo 

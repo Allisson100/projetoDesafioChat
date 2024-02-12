@@ -2,7 +2,14 @@ import { createSlice }  from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
 	name: "auth",
-	initialState: false,
+	initialState: () => {
+		const token = document.cookie
+			.split("; ")
+			.find((cookie) => cookie.startsWith("jwtToken="))
+			?.split("=")[1];
+		
+		return !!token;
+	},
 	reducers: {
 		addTokenCookie: (state, { payload }) => {
 

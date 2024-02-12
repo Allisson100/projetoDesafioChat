@@ -7,9 +7,7 @@ import Logo from "../../components/Logo";
 const Signup = () => {
 
 	const { pathname } = useLocation();
-
-	console.log(pathname);
-
+	
 	return (
 		<MainContainer>
 			<Logo 
