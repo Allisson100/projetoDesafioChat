@@ -1,4 +1,5 @@
 import loginValidation from "../../common/validations/loginValidation";
+import webSocketEvents from "../../services/webSocketEmitEvents";
 import ButtonSubmit from "../ButtonSubmit";
 import InputContainer from "../Containers/InputContainer";
 import FormText from "../FormText";
@@ -15,7 +16,7 @@ const FormLogin = () => {
 		},
 		validationSchema: loginValidation(),
 		onSubmit: (values, { resetForm }) => {
-			console.log(values);
+			webSocketEvents.authUser(values);
 			resetForm();
 		}
 	});

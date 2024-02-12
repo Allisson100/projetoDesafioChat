@@ -16,6 +16,20 @@ const userController = {
 		} catch (error) {
 			console.log(error); 
 		}
+	},
+
+	findUserDb: async(username) => {
+		try {
+
+			const user = usersCollection.findOne({
+				username
+			});
+
+			return user;
+			
+		} catch (error) {
+			console.log(error);
+		}
 	}
 };
 
