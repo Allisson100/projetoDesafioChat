@@ -1,5 +1,6 @@
 import loginValidation from "../../common/validations/loginValidation";
 import webSocketEvents from "../../services/webSocketEmitEvents";
+import localStorageMethods from "../../utils/localStorageMethods";
 import ButtonSubmit from "../ButtonSubmit";
 import InputContainer from "../Containers/InputContainer";
 import FormText from "../FormText";
@@ -18,6 +19,7 @@ const FormLogin = () => {
 		onSubmit: (values, { resetForm }) => {
 			resetForm();
 			webSocketEvents.authUser(values);
+			localStorageMethods.removeItem("username");
 		}
 	});
 

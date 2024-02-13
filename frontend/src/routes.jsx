@@ -8,14 +8,14 @@ import ChatPage from "./pages/Chat";
 import "./services/webSocketListenEvents";
 import { useDispatch, useSelector } from "react-redux";
 import { getTokenCookie } from "./store/reducers/auth";
+import DefaultPage from "./components/DefaultPage";
 
-const Router = () => {
+const RouterApp = () => {
 
 	const dispatch = useDispatch();
 	const isAuthenticated = useSelector(state => state.auth);
 
 	useEffect(() => {
-
 		dispatch(getTokenCookie("jwtToken"));
 		webSocketConnection();
 
@@ -27,9 +27,9 @@ const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				
-				<Route path="/" element={isAuthenticated ? <ChatPage /> : <Navigate to="/login" />} />
-
+				<Route path="/" element={isAuthenticated ? <DefaultPage /> : <Navigate to="/login" />}>
+					<Route index element={<ChatPage />}/>
+				</Route>
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 			</Routes>
@@ -37,4 +37,4 @@ const Router = () => {
 	);
 };
 
-export default Router;
+export default RouterApp;

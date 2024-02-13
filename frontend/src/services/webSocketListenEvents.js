@@ -1,7 +1,7 @@
 import { socket } from "../common/config/webSocketConnection";
 import store from "../store";
 import { addTokenCookie, getTokenCookie } from "../store/reducers/auth";
-import { addUsername } from "../store/reducers/username";
+import localStorageMethods from "../utils/localStorageMethods";
 
 socket.on("add_user_db_success", () => {
 	alert("Usuario cadastrado com sucesso");
@@ -14,7 +14,7 @@ socket.on("add_user_db_error", () => {
 socket.on("auth_success", ({ jwtToken, username }) => {
 	store.dispatch(addTokenCookie({ key: "jwtToken", value: jwtToken }));
 	store.dispatch(getTokenCookie("jwtToken"));
-	store.dispatch(addUsername(username));
+	localStorageMethods.setItem("username", username);
 	window.location.href = "/";
 });
 

@@ -1,19 +1,15 @@
-import { useDispatch } from "react-redux";
-import { removeTokenCookie } from "../../store/reducers/auth";
+import { ChatContainerStyled } from "./styles";
+
+
 
 const ChatPage = () => {
 
-	const disptach = useDispatch();
-
-	const handleClick = () => {
-		disptach(removeTokenCookie("jwtToken"));
-	};
-
 	return (
-		<>
-			<h1>ChatPage</h1>
-			<button onClick={handleClick}>Logout</button>
-		</>
+			
+		<ChatContainerStyled>
+
+		</ChatContainerStyled>
+			
 	);
 };
 

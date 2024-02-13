@@ -1,16 +1,24 @@
 import { createSlice }  from "@reduxjs/toolkit";
+import localStorageMethods from "../../utils/localStorageMethods";
 
 const usernameSlice = createSlice({
 	name: "username",
-	initialState: "",
-	reducers: {
-		addUsername: (state, { payload }) => {
+	initialState: () => {
+		const username = localStorageMethods.getItem("username");
 
-			return payload;
-		},
+		if(username) return username;
+
+		return "";
+	},
+	reducers: {
+		getUsernameLocalStorage: (state, { payload }) => {
+
+			const username = localStorageMethods.getItem(payload);
+			return username;
+		}
 	}
 });
 
-export const { addUsername } = usernameSlice.actions;
+export const { getUsernameLocalStorage } = usernameSlice.actions;
 
 export default usernameSlice.reducer;
