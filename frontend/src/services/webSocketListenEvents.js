@@ -10,7 +10,7 @@ socket.on("add_user_db_error", () => {
 	alert("Erro ao cadastrar usuário");
 });
 
-socket.on("auth_success", (jwtToken) => {
+socket.on("auth_success", ({ jwtToken, username }) => {
 	store.dispatch(addTokenCookie({ key: "jwtToken", value: jwtToken }));
 	store.dispatch(getTokenCookie("jwtToken"));
 	window.location.href = "/";

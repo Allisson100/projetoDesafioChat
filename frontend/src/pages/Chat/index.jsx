@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { removeTokenCookie } from "../../store/reducers/auth";
 
-const Home = () => {
+const ChatPage = () => {
 
 	const disptach = useDispatch();
 
@@ -11,10 +11,10 @@ const Home = () => {
 
 	return (
 		<>
-			<h1>HOME</h1>
+			<h1>ChatPage</h1>
 			<button onClick={handleClick}>Logout</button>
 		</>
 	);
 };
 
-export default Home;
+export default ChatPage;

@@ -4,7 +4,7 @@ import webSocketConnection from "./common/config/webSocketConnection";
 import webSocketDisconnection from "./common/config/webSocketDisconnection";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Home from "./pages/Home";
+import ChatPage from "./pages/Chat";
 import "./services/webSocketListenEvents";
 import { useDispatch, useSelector } from "react-redux";
 import { getTokenCookie } from "./store/reducers/auth";
@@ -28,7 +28,7 @@ const Router = () => {
 		<BrowserRouter>
 			<Routes>
 				
-				<Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+				<Route path="/" element={isAuthenticated ? <ChatPage /> : <Navigate to="/login" />} />
 
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
