@@ -8,14 +8,20 @@ import { HeaderUserInfosStyled, UserInfosContainerStyled } from "./styles";
 import { removeTokenCookie } from "../../store/reducers/auth";
 import { useEffect } from "react";
 import { getUsernameLocalStorage } from "../../store/reducers/username";
+import { useNavigate } from "react-router-dom";
 
 const UserInfos = () => {
 
+	const navigate = useNavigate();
 	const disptach = useDispatch();
 	const username = useSelector(state => state.username);
 
-	const handleClick = () => {
+	const handleExitClick = () => {
 		disptach(removeTokenCookie("jwtToken"));
+	};
+
+	const handleContactClick = () => {
+		navigate("/contact");
 	};
 
 	useEffect(() => {
@@ -27,11 +33,11 @@ const UserInfos = () => {
 			<HeaderUserInfosStyled>
 				<div>
 					<FaUserCircle />
-					<h1>{username}</h1>
+					<h2>{username}</h2>
 				</div>
-				<div><MdOutlineExitToApp onClick={handleClick} /></div>
+				<div><MdOutlineExitToApp onClick={handleExitClick} /></div>
 				<div><BiMessageRoundedAdd /></div>
-				<div><RiContactsBook2Fill /></div>
+				<div><RiContactsBook2Fill onClick={handleContactClick}/></div>
 				<div><GrGroup /></div>
 			</HeaderUserInfosStyled>
 		</UserInfosContainerStyled>
