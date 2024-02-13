@@ -1,16 +1,26 @@
-import { scryptSync, timingSafeEqual } from "crypto";
+import userController from "../controllers/userController.js";
+import compareHashs from "./compareHashs.js";
+import createJwt from "./createJwt.js";
 
-const authUser = (password, user) => {
+const authUser = async(userDatas) => {
+	const user = await userController.findUserDb(userDatas.username);
 
-	const testHash  = scryptSync(password, user.saltPassword, 64);
+	if(user) {
 
-	// eslint-disable-next-line
-	const realHash = Buffer.from(user.hashPassword, "hex");
+		const auth = compareHashs(userDatas.password, user);
 
-	const auth = timingSafeEqual(testHash, realHash);
-
-	return auth;
-
+		if(auth) {
+			const jwtToken = createJwt({ username: userDatas.username });
+			return { message: "jwtToken" , value: jwtToken };
+			// socket.emit("auth_success", jwtToken);
+		} else {
+			return { message: "auth_error" };
+			// socket.emit("auth_error");
+		}
+	} else {
+		return { message: "user_not_found" };
+		// socket.emit("user_not_found");
+	}
 };
 
 export default authUser;

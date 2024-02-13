@@ -1,7 +1,6 @@
 import userController from "./controllers/userController.js";
 import io from "./server.js";
 import authUser from "./utils/authUser.js";
-import createJwt from "./utils/createJwt.js";
 
 io.on("connection", (socket) => {
 	console.log("New client connected");
@@ -16,40 +15,47 @@ io.on("connection", (socket) => {
 		if(result.acknowledged) {
 			socket.emit("add_user_db_success");
 
-			const user = await userController.findUserDb(userDatas.username);
-			if(user) {
+			const result = await authUser(userDatas);
 
-				const auth = authUser(userDatas.password, user);
-
-				if(auth) {
-					const jwtToken = createJwt({ username: userDatas.username });
-					socket.emit("auth_success", jwtToken);
-				} else {
-					socket.emit("auth_error");
-				}
-			} else {
+			switch (result.message) {
+			case "jwtToken":
+				socket.emit("auth_success", result.value);
+				break;
+					
+			case "auth_error":
+				socket.emit("auth_error");
+				break;
+					
+			case "user_not_found":
 				socket.emit("user_not_found");
+				break;
+					
+			default:
+				break;
 			}
-			
 		} else {
 			socket.emit("add_user_db_error");
 		}
 	});
 
 	socket.on("auth_user", async (userLoginDatas) => {
-		const user = await userController.findUserDb(userLoginDatas.username);
-		if(user) {
+		const result = await authUser(userLoginDatas);
 
-			const auth = authUser(userLoginDatas.password, user);
-
-			if(auth) {
-				const jwtToken = createJwt({ username: userLoginDatas.username });
-				socket.emit("auth_success", jwtToken);
-			} else {
-				socket.emit("auth_error");
-			}
-		} else {
+		switch (result.message) {
+		case "jwtToken":
+			socket.emit("auth_success", result.value);
+			break;
+					
+		case "auth_error":
+			socket.emit("auth_error");
+			break;
+					
+		case "user_not_found":
 			socket.emit("user_not_found");
+			break;
+					
+		default:
+			break;
 		}
 	});
 });
