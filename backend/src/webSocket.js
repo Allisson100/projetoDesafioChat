@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
 	
 				switch (result.message) {
 				case "jwtToken":
-					socket.emit("auth_success", result.value);
+					socket.emit("auth_success", {jwtToken: result.value, username: userDatas.username});
 					break;
 						
 				case "auth_error":
