@@ -16,6 +16,10 @@ const webSocketEvents = {
 		socket.emit("auth_user", userLoginDatas);
 	},
 
+	finUserDb: (username) => {
+		socket.emit("find_user", username);
+	},
+
 	getContactsDb: (username) => {
 		socket.emit("user_contacts", username);
 	},
@@ -23,7 +27,6 @@ const webSocketEvents = {
 	deleteContactsDb: ({id, username}) => {
 		socket.emit("delete_user_contact", {id, username});
 	},
-
 
 	getUserMessagesDb: (username) => {
 		socket.emit("user_messages", username);

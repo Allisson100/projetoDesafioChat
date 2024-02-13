@@ -1,14 +1,12 @@
 import Input from "../../components/Input";
-import { 
-	AllContactsConatiner,
-	ContactInfosContainerStyled, 
-	ContactPageContainerStyled, 
-	IconAndInputContainerStyled
-} from "./styles";
+import { AllContactsContainer,} from "./styles";
 import { IoSearch } from "react-icons/io5"; //search
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import CardContacts from "../../components/CardContacts";
+import IconAndInputContainer from "../../components/Containers/IconAndInputContainer";
+import ContactInfosContainer from "../../components/Containers/ContactInfosContainer";
+import ContactPageContainer from "../../components/Containers/ContactPageContainer";
 
 const ContactPage = () => {
 
@@ -22,9 +20,9 @@ const ContactPage = () => {
 	});
 
 	return (
-		<ContactPageContainerStyled>
-			<ContactInfosContainerStyled>
-				<IconAndInputContainerStyled>
+		<ContactPageContainer>
+			<ContactInfosContainer>
+				<IconAndInputContainer>
 					<Input 
 						name="searchContact"
 						type="text"
@@ -36,9 +34,9 @@ const ContactPage = () => {
 						value={formik.values.searchContact}
 					/>
 					<IoSearch />
-				</IconAndInputContainerStyled>
+				</IconAndInputContainer>
                 
-				<AllContactsConatiner>
+				<AllContactsContainer>
 					
 					{userContacts
 						.filter((contact) => 
@@ -51,10 +49,10 @@ const ContactPage = () => {
 								username={contact.contactName}
 							/>
 						))}
-				</AllContactsConatiner>
+				</AllContactsContainer>
 				
-			</ContactInfosContainerStyled>
-		</ContactPageContainerStyled>
+			</ContactInfosContainer>
+		</ContactPageContainer>
 	);
 };
 

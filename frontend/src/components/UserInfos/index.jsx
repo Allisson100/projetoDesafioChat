@@ -24,6 +24,10 @@ const UserInfos = () => {
 		navigate("/contact");
 	};
 
+	const handleAddContact = () => {
+		navigate("/addcontact");
+	};
+
 	useEffect(() => {
 		disptach(getUsernameLocalStorage("username"));
 	},[]);
@@ -36,7 +40,7 @@ const UserInfos = () => {
 					<h2>{username}</h2>
 				</div>
 				<div><MdOutlineExitToApp onClick={handleExitClick} /></div>
-				<div><BiMessageRoundedAdd /></div>
+				<div><BiMessageRoundedAdd onClick={handleAddContact} /></div>
 				<div><RiContactsBook2Fill onClick={handleContactClick}/></div>
 				<div><GrGroup /></div>
 			</HeaderUserInfosStyled>
