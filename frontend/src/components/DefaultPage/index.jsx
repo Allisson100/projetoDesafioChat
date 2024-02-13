@@ -3,6 +3,8 @@ import { DefaultPageContainerStyled } from "./styles";
 import UserInfos from "../UserInfos";
 
 const DefaultPage = () => {
+
+
 	return (
 		<DefaultPageContainerStyled>
 			<UserInfos />
