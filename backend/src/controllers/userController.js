@@ -23,11 +23,39 @@ const userController = {
 	findUserDb: async(username) => {
 		try {
 
-			const user = usersCollection.findOne({
+			const user = await usersCollection.findOne({
 				username
 			});
 
 			return user;
+			
+		} catch (error) {
+			console.log(error);
+		}
+	},
+
+	getUserContactsDb: async(username) => {
+		try {
+
+			const user = await usersCollection.findOne({
+				username
+			});
+
+			return user.contacts;
+			
+		} catch (error) {
+			console.log(error);
+		}
+	},
+
+	getUserMessagesDb: async(username) => {
+		try {
+
+			const user = await usersCollection.findOne({
+				username
+			});
+
+			return user.messages;
 			
 		} catch (error) {
 			console.log(error);

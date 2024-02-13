@@ -67,4 +67,24 @@ io.on("connection", (socket) => {
 			break;
 		}
 	});
+
+	socket.on("user_contacts", async (username) => {
+		const result = await userController.getUserContactsDb(username);
+
+		if(result) {
+			socket.emit("get_user_contacts_success", result);
+		} else {
+			socket.emit("get_user_contacts_error");
+		}
+	});
+
+	socket.on("user_messages", async (username) => {
+		const result = await userController.getUserMessagesDb(username);
+
+		if(result) {
+			socket.emit("get_user_messages_success", result);
+		} else {
+			socket.emit("get_user_messages_error");
+		}
+	});
 });

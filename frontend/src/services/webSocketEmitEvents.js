@@ -21,7 +21,7 @@ const webSocketEvents = {
 	},
 
 	getUserMessagesDb: (username) => {
-		socket.emit("user_contacts", username);
+		socket.emit("user_messages", username);
 	}
 };
 
