@@ -14,6 +14,14 @@ const webSocketEvents = {
 
 	authUser: (userLoginDatas) => {
 		socket.emit("auth_user", userLoginDatas);
+	},
+
+	getContactsDb: (username) => {
+		socket.emit("user_contacts", username);
+	},
+
+	getUserMessagesDb: (username) => {
+		socket.emit("user_contacts", username);
 	}
 };
 
