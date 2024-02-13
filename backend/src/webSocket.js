@@ -10,32 +10,41 @@ io.on("connection", (socket) => {
 	});
 
 	socket.on("add_user_db", async (userDatas) => {
-		const result = await userController.addUserDb(userDatas);
 
-		if(result.acknowledged) {
-			socket.emit("add_user_db_success");
+		const user = await userController.findUserDb(userDatas.username);
 
-			const result = await authUser(userDatas);
+		if(user === null) {
+			const result = await userController.addUserDb(userDatas);
 
-			switch (result.message) {
-			case "jwtToken":
-				socket.emit("auth_success", result.value);
-				break;
-					
-			case "auth_error":
-				socket.emit("auth_error");
-				break;
-					
-			case "user_not_found":
-				socket.emit("user_not_found");
-				break;
-					
-			default:
-				break;
+			if(result.acknowledged) {
+				socket.emit("add_user_db_success");
+	
+				const result = await authUser(userDatas);
+	
+				switch (result.message) {
+				case "jwtToken":
+					socket.emit("auth_success", result.value);
+					break;
+						
+				case "auth_error":
+					socket.emit("auth_error");
+					break;
+						
+				case "user_not_found":
+					socket.emit("user_not_found");
+					break;
+						
+				default:
+					break;
+				}
+			} else {
+				socket.emit("add_user_db_error");
 			}
 		} else {
-			socket.emit("add_user_db_error");
+			socket.emit("user_already_exist");
 		}
+
+		
 	});
 
 	socket.on("auth_user", async (userLoginDatas) => {
