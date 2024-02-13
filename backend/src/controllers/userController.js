@@ -9,7 +9,9 @@ const userController = {
 			const result = await usersCollection.insertOne({
 				username,
 				hashPassword,
-				saltPassword
+				saltPassword,
+				contacts: [],
+				messages: []
 			});
 
 			return result;
