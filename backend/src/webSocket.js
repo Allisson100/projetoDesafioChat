@@ -78,6 +78,16 @@ io.on("connection", (socket) => {
 		}
 	});
 
+	socket.on("delete_user_contact", async ({id, username}) => {
+		const result = await userController.deleteContactsDb(id, username);
+
+		if(result.modifiedCount) {
+			socket.emit("delete_user_contacts_success", username);
+		} else {
+			socket.emit("delete_user_contacts_error");
+		}
+	});
+
 	socket.on("user_messages", async (username) => {
 		const result = await userController.getUserMessagesDb(username);
 

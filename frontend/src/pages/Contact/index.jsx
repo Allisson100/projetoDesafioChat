@@ -9,15 +9,11 @@ import { IoSearch } from "react-icons/io5"; //search
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import CardContacts from "../../components/CardContacts";
-import { v4 as uuidv4 } from "uuid";
 
 const ContactPage = () => {
 
 	const userContacts = useSelector(state => state.userContacts);
-	const userMessages = useSelector(state => state.userMessages);
-
 	console.log(userContacts);
-	console.log(userMessages);
 
 	const formik = useFormik({
 		initialValues: {
@@ -46,12 +42,13 @@ const ContactPage = () => {
 					
 					{userContacts
 						.filter((contact) => 
-							contact.toLowerCase().startsWith(formik.values.searchContact.toLocaleLowerCase()) 
+							contact.contactName.toLowerCase().startsWith(formik.values.searchContact.toLowerCase()) 
 						)
 						.map((contact) => (
 							<CardContacts
-								key={uuidv4()} 
-								username={contact}
+								key={contact._id} 
+								id={contact._id}
+								username={contact.contactName}
 							/>
 						))}
 				</AllContactsConatiner>

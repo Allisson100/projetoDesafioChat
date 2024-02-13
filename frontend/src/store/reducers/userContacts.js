@@ -5,7 +5,6 @@ const userContactsSlice = createSlice({
 	initialState: [],
 	reducers: {
 		getUserContactsDb: (state, { payload }) => {
-
 			return payload;
 		},
 	}

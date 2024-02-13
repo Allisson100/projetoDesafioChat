@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { usersCollection } from "../db/dbConnect.js";
 import createHashAndSaltPassword from "../utils/createHashAndSaltPassword.js";
 
@@ -42,6 +43,21 @@ const userController = {
 			});
 
 			return user.contacts;
+			
+		} catch (error) {
+			console.log(error);
+		}
+	},
+
+	deleteContactsDb: async(id, username) => {
+		try {
+
+			const result = await usersCollection.updateOne(
+				{username: username},
+				{ $pull: { contacts: { _id: new ObjectId(id) } } }
+			);
+
+			return result;
 			
 		} catch (error) {
 			console.log(error);

@@ -4,6 +4,7 @@ import { addTokenCookie, getTokenCookie } from "../store/reducers/auth";
 import { getUserContactsDb } from "../store/reducers/userContacts";
 import { getUserMessagesDb } from "../store/reducers/userMessages";
 import localStorageMethods from "../utils/localStorageMethods";
+import webSocketEvents from "./webSocketEmitEvents";
 
 socket.on("add_user_db_success", () => {
 	alert("Usuario cadastrado com sucesso");
@@ -46,4 +47,13 @@ socket.on("get_user_contacts_success", (contacts) => {
 
 socket.on("get_user_messages_success", (messages) => {
 	store.dispatch(getUserMessagesDb(messages));
+});
+
+socket.on("delete_user_contacts_success", (username) => {
+	webSocketEvents.getContactsDb(username);
+	alert("Usuário deletado com sucesso!");
+});
+
+socket.on("delete_user_contacts_error", () => {
+	alert("Erro ao deletar contato!");
 });

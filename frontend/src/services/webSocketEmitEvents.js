@@ -20,6 +20,11 @@ const webSocketEvents = {
 		socket.emit("user_contacts", username);
 	},
 
+	deleteContactsDb: ({id, username}) => {
+		socket.emit("delete_user_contact", {id, username});
+	},
+
+
 	getUserMessagesDb: (username) => {
 		socket.emit("user_messages", username);
 	}

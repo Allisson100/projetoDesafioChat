@@ -6,7 +6,6 @@ import webSocketEvents from "../../services/webSocketEmitEvents";
 import { useSelector } from "react-redux";
 
 const DefaultPage = () => {
-
 	const username = useSelector(state => state.username);
 
 	useEffect(() => {
