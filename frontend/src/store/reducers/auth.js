@@ -1,19 +1,16 @@
 import { createSlice }  from "@reduxjs/toolkit";
+import getToken from "../../../utils/getToken";
 
 const authSlice = createSlice({
 	name: "auth",
 	initialState: () => {
-		const token = document.cookie
-			.split("; ")
-			.find((cookie) => cookie.startsWith("jwtToken="))
-			?.split("=")[1];
+		const token = getToken("jwtToken");
 		
 		return !!token;
 	},
 	reducers: {
 		addTokenCookie: (state, { payload }) => {
 
-			// Trazer essas variaveis como objeto no paylaod
 			const { key, value } = payload;
 			document.cookie = `${key}=${value};path=/`;
 
@@ -22,11 +19,7 @@ const authSlice = createSlice({
 
 		getTokenCookie: (state, { payload }) => {
 
-			//A chave do cookie é o payload
-			const token = document.cookie
-				.split("; ")
-				.find((cookie) => cookie.startsWith(`${payload}=`))
-				?.split("=")[1];
+			const token = getToken(payload);
 
 			if(token) {
 				return true;
@@ -37,8 +30,6 @@ const authSlice = createSlice({
 
 		removeTokenCookie: (state, { payload }) => {
 
-			//A chave do cookie é o payload
-			// Chamar quando apertar botão logout
 			document.cookie = `${payload}=; expires=Thu, 01 Jan 1970 00:00:00`;
 
 			return false;
