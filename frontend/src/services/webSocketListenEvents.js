@@ -23,3 +23,7 @@ socket.on("auth_error", () => {
 socket.on("user_not_found", () => {
 	alert("O nome de usuário não existe");
 });
+
+socket.on("user_already_exist", () => {
+	alert("Esse nome de usuário já existe no banco de dados, tente outro nome!");
+});
