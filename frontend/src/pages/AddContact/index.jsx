@@ -25,12 +25,6 @@ const AddContact = () => {
 		formik.resetForm();
 	};
 
-	const handleKeyPress = (event) => {
-		if(event.key === "Enter") {
-			handleSearch();
-		}
-	};
-
 	const formik = useFormik({
 		initialValues: {
 			findUser: ""
@@ -51,7 +45,6 @@ const AddContact = () => {
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
 						value={formik.values.findUser}
-						onKeyPress={handleKeyPress}
 					/>
 					<IoSearch 
 						onClick={handleSearch}

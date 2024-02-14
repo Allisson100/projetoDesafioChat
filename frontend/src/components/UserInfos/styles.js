@@ -13,11 +13,11 @@ const HeaderUserInfosStyled = styled.header `
     align-items: center;
     justify-content: center;
     grid-template-rows: auto auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     height: 100px;
     grid-template-areas: 
-        "username username username username"
-        "newMessage contacts newGroup exit"
+        "username username username username username"
+        "newMessage newContact contacts newGroup exit"
     ;
     padding: 0.5rem;
     background-color: ${props => props.theme.bgColors.primary};
@@ -46,15 +46,24 @@ const HeaderUserInfosStyled = styled.header `
 
     div:first-child {
         grid-area: username;
-        grid-column: span 4;
+        grid-column: span 5;
         gap: 0.5rem;
     }
     div:nth-child(2) {
         grid-area: exit;
     }
-    div:nth-child(3) {grid-area: newMessage;}
+    div:nth-child(3) {
+
+        svg {
+            width: 21px;
+            height: 21px;
+        }
+        grid-area: newContact;
+        
+    }
     div:nth-child(4) {grid-area: contacts;}
     div:nth-child(5) {grid-area: newGroup;}
+    div:nth-child(6) {grid-area: newMessage;}
 `;
 
 //OUTROS
@@ -62,7 +71,7 @@ const HeaderUserInfosStyled = styled.header `
 const AllMessagesContainerStyled = styled.div`
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: ${props => props.theme.bgColors.other};
     overflow-y: auto;
     display: flex;
     flex-direction: column;

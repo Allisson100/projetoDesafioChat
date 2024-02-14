@@ -85,3 +85,20 @@ socket.on("add_contact_success", (username) => {
 socket.on("add_contact_error", () => {
 	alert("Erro ao adicionar usuário, tente novamente mais tarde!");
 });
+
+socket.on("user_send_messages_success", (username) => {
+	webSocketEvents.getUserMessagesDb(username);
+});
+
+socket.on("message_to_user_connected", (username) => {
+	webSocketEvents.getUserMessagesDb(username);
+});
+
+socket.on("delete_user_messages_success", (username) => {
+	webSocketEvents.getUserMessagesDb(username);
+});
+
+socket.on("delete_user_messages_error", () => {
+	alert("Erro ao deletar conversa!");
+});
+

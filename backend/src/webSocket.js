@@ -2,11 +2,48 @@ import userController from "./controllers/userController.js";
 import io from "./server.js";
 import authUser from "./utils/authUser.js";
 
+const userSocketMap = new Map();
+
 io.on("connection", (socket) => {
 	console.log("New client connected");
 
 	socket.on("disconnect", () => {
-		console.log("Client disconnected");
+		userSocketMap.forEach((socketId, username) => {
+			if (socketId === socket.id) {
+				userSocketMap.delete(username);
+				console.log(`User ${username} disconnected`);
+			}
+		});
+
+		console.log("Disconnect");
+		
+	});
+
+	socket.on("send_username_to_server", async(username) => {
+		userSocketMap.set(username, socket.id);
+	});
+
+	socket.on("user_send_messages", async({message, usernameTosend, whoSent }) => {
+
+		const userSocketId = userSocketMap.get(usernameTosend);
+
+		if(userSocketId) {
+
+
+			const saveAs = whoSent;
+
+			await userController.saveMessageDb(message, usernameTosend, whoSent, saveAs);
+			await userController.saveMessageDb(message, whoSent, usernameTosend, saveAs);
+			socket.emit("user_send_messages_success", whoSent);
+			io.to(userSocketId).emit("message_to_user_connected", usernameTosend);
+		}else {
+			const saveAs = whoSent;
+
+			await userController.saveMessageDb(message, usernameTosend, whoSent, saveAs);
+			await userController.saveMessageDb(message, whoSent, usernameTosend, saveAs);
+
+			socket.emit("user_send_messages_success", whoSent);
+		}
 	});
 
 	socket.on("add_user_db", async (userDatas) => {
@@ -117,6 +154,16 @@ io.on("connection", (socket) => {
 			socket.emit("add_contact_success", userAuth);
 		} else {
 			socket.emit("add_contact_error");
+		}
+	});
+
+	socket.on("delete_user_messages", async ({username, userAuth}) => {
+		const result = await userController.deleteMessage(username, userAuth);
+
+		if(result.modifiedCount) {
+			socket.emit("delete_user_messages_success", userAuth);
+		} else {
+			socket.emit("delete_user_messages_error");
 		}
 	});
 });

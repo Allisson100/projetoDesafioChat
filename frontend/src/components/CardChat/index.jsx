@@ -2,13 +2,16 @@ import { FaUserCircle } from "react-icons/fa"; //userfoto
 import { IoClose } from "react-icons/io5";
 import { CardChatContainerStyled, UserCardChatContainerStyled } from "./styles";
 import { useNavigate } from "react-router";
+import webSocketEvents from "../../services/webSocketEmitEvents";
+import { useSelector } from "react-redux";
 
 const CardChat = ({ username }) => {
 
 	const navigate = useNavigate();
+	const userAuth = useSelector(state => state.username);
 
 	const handleDeleteChat = () => {
-		console.log("Arrumar depois");
+		webSocketEvents.deleteMessage(username, userAuth);
 	};
 
 	const handleGetChatMessages = () => {

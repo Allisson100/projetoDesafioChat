@@ -1,8 +1,7 @@
-import { MdOutlineExitToApp } from "react-icons/md";//sair
-import { FaUserCircle } from "react-icons/fa"; //userfoto
-import { RiContactsBook2Fill } from "react-icons/ri"; // lista contatos
-import { BiMessageRoundedAdd } from "react-icons/bi"; // começar conversa
-import { GrGroup } from "react-icons/gr"; //group
+import { MdOutlineExitToApp } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
+import { RiContactsBook2Fill } from "react-icons/ri";
+import { GrGroup } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { HeaderUserInfosStyled, AllMessagesContainerStyled, UserInfosContainerStyled } from "./styles";
 import { removeTokenCookie } from "../../store/reducers/auth";
@@ -10,6 +9,8 @@ import { useEffect } from "react";
 import { getUsernameLocalStorage } from "../../store/reducers/username";
 import { useNavigate } from "react-router-dom";
 import CardChat from "../CardChat";
+import { FaBookMedical } from "react-icons/fa";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
 const UserInfos = () => {
 
@@ -18,7 +19,7 @@ const UserInfos = () => {
 	const username = useSelector(state => state.username);
 	const messages = useSelector(state => state.userMessages);
 
-	console.log(messages);
+	console.log("hehe",messages);
 
 	const handleExitClick = () => {
 		disptach(removeTokenCookie("jwtToken"));
@@ -33,7 +34,14 @@ const UserInfos = () => {
 	};
 
 	const handleChats = () => {
-		navigate(`/chat/${messages[0].username}`);
+
+		if(messages.length === 0) {
+			navigate("/chat/empty");
+		} else {
+			navigate(`/chat/${messages[0].username}`);
+		}
+		
+		
 	};
 
 	useEffect(() => {
@@ -48,9 +56,10 @@ const UserInfos = () => {
 					<h2>{username}</h2>
 				</div>
 				<div><MdOutlineExitToApp onClick={handleExitClick} /></div>
-				<div><BiMessageRoundedAdd onClick={handleAddContact} /></div>
+				<div><FaBookMedical onClick={handleAddContact} /></div>
 				<div><RiContactsBook2Fill onClick={handleContactClick}/></div>
-				<div><GrGroup onClick={handleChats}/></div>
+				<div><GrGroup /></div>
+				<div><IoChatboxEllipsesOutline onClick={handleChats}/></div>
 			</HeaderUserInfosStyled>
 			<AllMessagesContainerStyled>
 				{messages.map((message, i) => (
@@ -59,8 +68,6 @@ const UserInfos = () => {
 						username={message.username}
 					/>
 				))}
-			
-
 			</AllMessagesContainerStyled>
 		</UserInfosContainerStyled>
 	);

@@ -2,6 +2,10 @@ import { socket } from "../common/config/webSocketConnection";
 
 const webSocketEvents = {
 
+	sendUSernameToServer: (username) => {
+		socket.emit("send_username_to_server", username);
+	},
+
 	addUserDb: (userDatas) => {
 
 		const newUserDatas = {
@@ -34,6 +38,14 @@ const webSocketEvents = {
 
 	getUserMessagesDb: (username) => {
 		socket.emit("user_messages", username);
+	},
+
+	sendMessage: (message, usernameTosend, userWhoSent) => {
+		socket.emit("user_send_messages", {message, usernameTosend, whoSent: userWhoSent });
+	},
+
+	deleteMessage: (username, userAuth) => {
+		socket.emit("delete_user_messages", {username, userAuth});
 	}
 };
 

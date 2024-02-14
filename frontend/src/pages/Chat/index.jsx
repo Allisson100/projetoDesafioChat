@@ -1,33 +1,38 @@
 import { useFormik } from "formik";
-import { AllTextMessagesContainerStyled, ChatContainerStyled } from "./styles";
+import { AllTextMessagesContainerStyled, ChatContainerStyled, EmptyContainerStyled } from "./styles";
 import Input from "../../components/Input";
 import { useSelector } from "react-redux";
 import TextMessageCard from "../../components/TextMessageCard";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import webSocketEvents from "../../services/webSocketEmitEvents";
+import EmptyList from "../../components/EmptyList";
 
 const ChatPage = () => {
 	const [ getMessages , setGetMessages ] = useState([]);
 
 	const messages = useSelector(state => state.userMessages);
+	const userAuth = useSelector(state => state.username);
+
+	console.log("oi",getMessages);
+
 	const { username } = useParams();
 
 	useEffect(() => {
 		setGetMessages(() => {
 			const newMessages = messages.filter((message) => message.username === username);
 
-			return newMessages[0].textMessages;
+			return newMessages[0]?.textMessages;
 		});
 	},[messages, username]);
 
 	const handleSendText = () => {
-		console.log(formik.values.sendMessage);
-		
+		webSocketEvents.sendMessage(formik.values.sendMessage, username, userAuth);
 		formik.resetForm();
 	};
 
 	const handleKeyPress = (event) => {
-		if(event.key === "Enter") {
+		if(event.key === "Enter" && formik.values.sendMessage !== "") {
 			handleSendText();
 		}
 	};
@@ -42,13 +47,22 @@ const ChatPage = () => {
 		<ChatContainerStyled>
 			<AllTextMessagesContainerStyled>
 				{
-					getMessages.map((message, i) => (
+					getMessages?.map((message) => (
 						<TextMessageCard 
-							key={i}
+							key={message._id}
 							textMessage={message.text}
 							userSentMessage={message.whoSent}
+							whoSent={message.whoSent}
+							createdAt={message.createdAt}
 						/>
 					))
+				}
+				{username === "empty" &&
+					<EmptyContainerStyled>
+						<EmptyList>
+							Nenhuma conversa criada ainda!
+						</EmptyList>
+					</EmptyContainerStyled>
 				}
 			</AllTextMessagesContainerStyled>
 			<div>

@@ -10,9 +10,10 @@ const theme = {
 		bgColors: {
 			primary: "#0e2ee3",
 			secundary: "#78b8ec",
-			tertiary: "#00ACC1",
+			tertiary: "#012564",
 			quaternary: "#1976D2",
 			quinternary: "#ffffff",
+			other: "#003d82",
 		},
 
 		fonts: {

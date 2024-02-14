@@ -12,7 +12,7 @@ const userController = {
 				hashPassword,
 				saltPassword,
 				contacts: [],
-				messages: []
+				messages: []	
 			});
 
 			return result;
@@ -101,7 +101,73 @@ const userController = {
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	},
+
+	saveMessageDb: async(message, usernameTosend, whoSent, saveAs) => {
+		try {
+
+			const newObject = {
+				_id: new ObjectId(),
+				text: message,
+				whoSent: saveAs,
+				createdAt: new Date(),
+			};
+
+			const objectEmptyMessages = {
+				username: whoSent,
+				textMessages: [
+					{
+						_id: new ObjectId(),
+						text: message,
+						whoSent: saveAs,
+						createdAt: new Date(),
+					}
+				]
+			};
+
+			const existingDocument = await usersCollection.findOne({ 
+				username: usernameTosend,
+				messages: { $elemMatch: { username: whoSent } }
+			});
+
+			if (!existingDocument || existingDocument.messages.length === 0) {
+
+				const result = await usersCollection.updateOne(
+					{ username: usernameTosend },
+					{ $push: { messages: { $each: [objectEmptyMessages], $position: 0 } } }
+				);
+
+				return result;
+			} else {
+				const result = await usersCollection.updateOne(
+					{ 
+						username: usernameTosend,
+						messages: { $elemMatch: { username: whoSent } }
+					},
+					{ $push: { "messages.$.textMessages": { $each: [newObject], $position: 0 } } }
+				);
+				return result;
+			}
+			
+		} catch (error) {
+			console.log(error);
+		}
+	},
+
+	deleteMessage: async(username, userAuth) => {
+		try {
+
+			const result = await usersCollection.updateOne(
+				{ username: userAuth },
+				{ $pull: { messages: { username: username } } } 
+			);
+			return result;
+			
+		} catch (error) {
+			console.log(error);
+		}
+	},
+
 };
 
 export default userController;

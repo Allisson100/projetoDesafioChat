@@ -8,6 +8,7 @@ const webSocketConnection = () => {
 
 	socket.on("connect", () => {
 		console.log("Connected to server");
+
 	});
 
 	socket.on("disconnect", () => {

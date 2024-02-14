@@ -9,6 +9,7 @@ const DefaultPage = () => {
 	const username = useSelector(state => state.username);
 
 	useEffect(() => {
+		webSocketEvents.sendUSernameToServer(username);
 		webSocketEvents.getContactsDb(username);
 		webSocketEvents.getUserMessagesDb(username);
 	}, []);

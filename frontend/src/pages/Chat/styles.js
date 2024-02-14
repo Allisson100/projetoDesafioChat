@@ -16,6 +16,15 @@ const AllTextMessagesContainerStyled = styled.div`
     display: flex;
     flex-direction: column-reverse;
     overflow-y: auto;
+    gap: 1rem;
+`;
+
+const EmptyContainerStyled = styled.div `
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const WrapperStyled = styled.div`
@@ -25,5 +34,6 @@ const WrapperStyled = styled.div`
 export {
 	ChatContainerStyled,
 	AllTextMessagesContainerStyled,
-	WrapperStyled
+	WrapperStyled,
+	EmptyContainerStyled
 };
