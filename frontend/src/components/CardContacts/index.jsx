@@ -1,5 +1,5 @@
-import { FaUserCircle } from "react-icons/fa"; //userfoto
-import { FaRegMessage } from "react-icons/fa6"; //message
+import { FaUserCircle } from "react-icons/fa";
+import { FaRegMessage } from "react-icons/fa6";
 import { ButtonContainerStyled, ContactContainerStyled, UserContainerStyled } from "./styles";
 import { IoClose } from "react-icons/io5";
 import { useSelector } from "react-redux";

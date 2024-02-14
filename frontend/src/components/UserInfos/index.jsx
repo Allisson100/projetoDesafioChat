@@ -19,8 +19,6 @@ const UserInfos = () => {
 	const username = useSelector(state => state.username);
 	const messages = useSelector(state => state.userMessages);
 
-	console.log("hehe",messages);
-
 	const handleExitClick = () => {
 		disptach(removeTokenCookie("jwtToken"));
 	};
@@ -31,6 +29,10 @@ const UserInfos = () => {
 
 	const handleAddContact = () => {
 		navigate("/addcontact");
+	};
+
+	const handleGroup = () => {
+		navigate("/group");
 	};
 
 	const handleChats = () => {
@@ -55,10 +57,10 @@ const UserInfos = () => {
 					<FaUserCircle />
 					<h2>{username}</h2>
 				</div>
-				<div><MdOutlineExitToApp onClick={handleExitClick} /></div>
+				<div><MdOutlineExitToApp onClick={handleExitClick}/></div>
 				<div><FaBookMedical onClick={handleAddContact} /></div>
 				<div><RiContactsBook2Fill onClick={handleContactClick}/></div>
-				<div><GrGroup /></div>
+				<div><GrGroup onClick={handleGroup}/></div>
 				<div><IoChatboxEllipsesOutline onClick={handleChats}/></div>
 			</HeaderUserInfosStyled>
 			<AllMessagesContainerStyled>

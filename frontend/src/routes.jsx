@@ -11,6 +11,7 @@ import { getTokenCookie } from "./store/reducers/auth";
 import DefaultPage from "./components/DefaultPage";
 import ContactPage from "./pages/Contact";
 import AddContact from "./pages/AddContact";
+import GroupPage from "./pages/Group";
 
 const RouterApp = () => {
 
@@ -34,6 +35,7 @@ const RouterApp = () => {
 					<Route path="/chat/:username/" element={<ChatPage />}/>
 					<Route path="/contact" element={<ContactPage />}/>
 					<Route path="/addcontact" element={<AddContact />}/>
+					<Route path="/group" element={<GroupPage />}/>
 				</Route>
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
