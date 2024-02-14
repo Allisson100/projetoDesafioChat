@@ -41,7 +41,7 @@ Acesse a pasta backend pelo terminal e digite:
 Abra outra janela do terminal, acesse a pasta frontend e digite:
 
     npm install
-    npm dev
+    npm run dev
 
 O terminal mostrará a url para você utilizar o projeto localmente.
 
