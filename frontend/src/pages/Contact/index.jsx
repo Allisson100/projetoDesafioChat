@@ -7,6 +7,7 @@ import CardContacts from "../../components/CardContacts";
 import IconAndInputContainer from "../../components/Containers/IconAndInputContainer";
 import ContactInfosContainer from "../../components/Containers/ContactInfosContainer";
 import ContactPageContainer from "../../components/Containers/ContactPageContainer";
+import EmptyList from "../../components/EmptyList";
 
 const ContactPage = () => {
 
@@ -37,6 +38,13 @@ const ContactPage = () => {
 				</IconAndInputContainer>
                 
 				<AllContactsContainer>
+
+					{userContacts.length === 0 &&
+						<EmptyList>
+							Lista de contatos vazia ...
+						</EmptyList>
+	
+					}
 					
 					{userContacts
 						.filter((contact) => 

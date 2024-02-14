@@ -10,6 +10,7 @@ import { removeUser } from "../../store/reducers/addUser";
 import webSocketEvents from "../../services/webSocketEmitEvents";
 import LoadingAnimation from "../../components/LoadingAnimation";
 import CardAddContact from "../../components/CardAddContact";
+import EmptyList from "../../components/EmptyList";
 
 const AddContact = () => {
 
@@ -50,6 +51,11 @@ const AddContact = () => {
 						onClick={handleSearch}
 					/>
 				</IconAndInputContainerStyled>
+				{userFound === "" &&
+					<EmptyList>
+						Adicione algúem para conversar!😀
+					</EmptyList>
+				}
 				{loading &&
 					<LoadingAnimation />
 				}

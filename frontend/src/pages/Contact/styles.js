@@ -18,7 +18,6 @@ const AllContactsContainer = styled.div`
     }
 `;
 
-
 export {
 	AllContactsContainer
 };
