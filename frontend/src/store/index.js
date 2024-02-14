@@ -7,6 +7,7 @@ import userContactsSlice from "./reducers/userContacts";
 import loadingSlice from "./reducers/loading";
 import addUserSlice from "./reducers/addUser";
 import groupSlice from "./reducers/group";
+import groupDbSlice from "./reducers/groupDb";
 
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
 		loading: loadingSlice,
 		addUSer: addUserSlice,
 		group: groupSlice,
+		groupDb: groupDbSlice,
 	}
 });
 

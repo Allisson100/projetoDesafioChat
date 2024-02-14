@@ -2,27 +2,41 @@ import { useFormik } from "formik";
 import Input from "../../components/Input";
 import { ButtonContainer, ContactsContainerStyled, GroupPageContainerStyled, InputContainerStyled } from "./styles";
 import GroupContactCard from "../../components/GroupContactCard";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import newGroupValidation from "../../common/validations/newGroupValidation";
+import { removeAllUsers } from "../../store/reducers/group";
+import webSocketEvents from "../../services/webSocketEmitEvents";
 
 const GroupPage = () => {
 
+	const disptach = useDispatch();
 	const contacts = useSelector(state => state.userContacts);
+	const groupUsers = useSelector(state => state.group);
+	const userAuth = useSelector(state => state.username);
+
+	const handleCreateNewGroup = () => {
+		formik.submitForm();
+	};
 
 	const formik = useFormik({
 		initialValues: {
 			titleGroup: "",
 			descriptionGroup: ""
 		},
+		validationSchema: newGroupValidation(),
+		onSubmit: (values, { resetForm }) => {
+			webSocketEvents.createNewGroup(userAuth, values.titleGroup, values.descriptionGroup, groupUsers);
+			resetForm();
+			disptach(removeAllUsers());
+		}
 	});
 
-	const handleCreateNewGroup = () => {
-		console.log("Teste");
-	};
+	
 
 	return (
 		<GroupPageContainerStyled>
 			<h2>Criar Grupo</h2>
-			<InputContainerStyled>
+			<InputContainerStyled onSubmit={formik.handleSubmit}>
 				<Input
 					name="titleGroup"
 					type="text"

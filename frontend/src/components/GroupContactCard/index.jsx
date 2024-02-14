@@ -10,7 +10,6 @@ const GroupContactCard = ({ username }) => {
 
 	const userAddedGroup = usersGroup.includes(username);
 
-	console.log("Group:", usersGroup);
 
 	const handleAddGroup = () => {
 		if(userAddedGroup) {

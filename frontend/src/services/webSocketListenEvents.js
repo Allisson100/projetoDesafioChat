@@ -2,6 +2,7 @@ import { socket } from "../common/config/webSocketConnection";
 import store from "../store";
 import { removeUser, userFound } from "../store/reducers/addUser";
 import { addTokenCookie, getTokenCookie } from "../store/reducers/auth";
+import { getGroupsDb } from "../store/reducers/groupDb";
 import { stopLoading } from "../store/reducers/loading";
 import { getUserContactsDb } from "../store/reducers/userContacts";
 import { getUserMessagesDb } from "../store/reducers/userMessages";
@@ -102,3 +103,18 @@ socket.on("delete_user_messages_error", () => {
 	alert("Erro ao deletar conversa!");
 });
 
+socket.on("get_user_group_success", (groups) => {
+	store.dispatch(getGroupsDb(groups));
+});
+
+socket.on("get_user_group_error", () => {
+	alert("Erro ao obter grupos do usuário!");
+});
+
+socket.on("create_new_group_success", (username) => {
+	webSocketEvents.getUSerGroups(username);
+});
+
+socket.on("create_new_group_error", () => {
+	alert("Erro ao criar novo grupo");
+});

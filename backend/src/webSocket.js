@@ -166,4 +166,25 @@ io.on("connection", (socket) => {
 			socket.emit("delete_user_messages_error");
 		}
 	});
+
+	socket.on("create_new_group", async ({userAuth, titleGroup, descriptionGroup, groupUsers}) => {
+		const result = await userController.createNewGroup(userAuth, titleGroup, descriptionGroup, groupUsers);
+
+		if(result.modifiedCount) {
+			socket.emit("create_new_group_success", userAuth);
+		} else {
+			socket.emit("create_new_group_error");
+		}
+	});
+
+	socket.on("get_user_group", async (username) => {
+		const result = await userController.findUserDb(username);
+		const groups = result.groups.reverse();
+
+		if(result) {
+			socket.emit("get_user_group_success", groups);
+		} else {
+			socket.emit("get_user_group_error");
+		}
+	});
 });

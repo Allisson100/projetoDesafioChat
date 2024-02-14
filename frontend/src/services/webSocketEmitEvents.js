@@ -46,7 +46,15 @@ const webSocketEvents = {
 
 	deleteMessage: (username, userAuth) => {
 		socket.emit("delete_user_messages", {username, userAuth});
-	}
+	},
+
+	createNewGroup: (userAuth, titleGroup, descriptionGroup, groupUsers) => {
+		socket.emit("create_new_group", {userAuth, titleGroup, descriptionGroup, groupUsers});
+	},
+
+	getUSerGroups: (username) => {
+		socket.emit("get_user_group", username);
+	},
 };
 
 export default webSocketEvents;

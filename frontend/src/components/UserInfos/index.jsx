@@ -18,6 +18,9 @@ const UserInfos = () => {
 	const disptach = useDispatch();
 	const username = useSelector(state => state.username);
 	const messages = useSelector(state => state.userMessages);
+	const groupsDB = useSelector(state => state.groupDb);
+
+	console.log(groupsDB);
 
 	const handleExitClick = () => {
 		disptach(removeTokenCookie("jwtToken"));
@@ -31,9 +34,9 @@ const UserInfos = () => {
 		navigate("/addcontact");
 	};
 
-	const handleGroup = () => {
-		navigate("/group");
-	};
+	// const handleGroup = () => {
+	// 	navigate("/group");
+	// };
 
 	const handleChats = () => {
 
@@ -60,10 +63,17 @@ const UserInfos = () => {
 				<div><MdOutlineExitToApp onClick={handleExitClick}/></div>
 				<div><FaBookMedical onClick={handleAddContact} /></div>
 				<div><RiContactsBook2Fill onClick={handleContactClick}/></div>
-				<div><GrGroup onClick={handleGroup}/></div>
+				<div><GrGroup/></div>
 				<div><IoChatboxEllipsesOutline onClick={handleChats}/></div>
 			</HeaderUserInfosStyled>
 			<AllMessagesContainerStyled>
+				{groupsDB.map((eachGroup, i) => (
+					<CardChat  
+						key={i}
+						group
+						username={eachGroup.name}
+					/>
+				))}
 				{messages.map((message, i) => (
 					<CardChat  
 						key={i}

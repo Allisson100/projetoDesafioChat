@@ -12,6 +12,7 @@ const DefaultPage = () => {
 		webSocketEvents.sendUSernameToServer(username);
 		webSocketEvents.getContactsDb(username);
 		webSocketEvents.getUserMessagesDb(username);
+		webSocketEvents.getUSerGroups(username);
 	}, []);
 
 	return (

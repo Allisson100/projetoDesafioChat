@@ -12,7 +12,8 @@ const userController = {
 				hashPassword,
 				saltPassword,
 				contacts: [],
-				messages: []	
+				messages: [],
+				groups: []	
 			});
 
 			return result;
@@ -167,6 +168,39 @@ const userController = {
 			console.log(error);
 		}
 	},
+
+	createNewGroup: async(userAuth, titleGroup, descriptionGroup, groupUsers) => {
+		try {
+
+			const newGroup = {
+				_id: new ObjectId(),
+				name: titleGroup,
+				description: descriptionGroup,
+				members: groupUsers,
+				createdAt: new Date(),
+				messages: []
+			};
+
+			const result = await usersCollection.updateOne(
+				{ username: userAuth },
+				{ $push: { groups: newGroup } }
+			);
+
+			const updatePromises = groupUsers.map(async (username) => {
+				return await usersCollection.updateOne(
+					{ username: username },
+					{ $push: { groups: newGroup } }
+				);
+			});
+
+			await Promise.all(updatePromises);
+
+			return result;
+
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 };
 
