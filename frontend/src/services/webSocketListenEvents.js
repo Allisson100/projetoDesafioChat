@@ -71,6 +71,11 @@ socket.on("find_user_error", () => {
 	store.dispatch(stopLoading());
 });
 
+socket.on("add_contact_user_already_added_to_contact_list", () => {
+	alert("Esse usuário já está na sua lista de contatos!");
+	store.dispatch(removeUser());
+});
+
 socket.on("add_contact_success", (username) => {
 	webSocketEvents.getContactsDb(username);
 	alert("Usuário adicionado com sucesso!");
