@@ -1,9 +1,10 @@
 import { InputContainerStyled, InputStyled, SpanStyled } from "./styles";
 
-const Input = ({ name, type, placeholder, placeholderColor, autocomplete, errorMessage, ...props }) => {
+const Input = ({ name, type, placeholder, placeholderColor, autocomplete, errorMessage, noBorderRadios, ...props }) => {
 	return (
 		<InputContainerStyled>
-			<InputStyled 
+			<InputStyled
+				$noBorderRadios={noBorderRadios}
 				name={name}
 				id={name}
 				type={type} 

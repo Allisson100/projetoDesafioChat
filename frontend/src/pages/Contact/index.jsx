@@ -12,7 +12,6 @@ import EmptyList from "../../components/EmptyList";
 const ContactPage = () => {
 
 	const userContacts = useSelector(state => state.userContacts);
-	console.log(userContacts);
 
 	const formik = useFormik({
 		initialValues: {

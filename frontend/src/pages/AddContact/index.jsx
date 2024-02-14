@@ -17,7 +17,6 @@ const AddContact = () => {
 	const dispatch = useDispatch();
 	const loading = useSelector(state => state.loading);
 	const userFound = useSelector(state => state.addUSer);
-	console.log(loading, userFound);
 
 	const handleSearch = () => {
 		dispatch(removeUser());

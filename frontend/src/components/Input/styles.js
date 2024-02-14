@@ -11,7 +11,7 @@ const InputContainerStyled = styled.div`
 
 const InputStyled = styled.input`
     background-color: ${props => props.$placeholderColor};
-    border-radius: 0.5rem;
+    border-radius: ${props => props.$noBorderRadios ? "none" : "0.5rem"};
     color: ${props => props.theme.fontColors.secundary};
     font-size: 1.2rem;
     height: 3.5rem;

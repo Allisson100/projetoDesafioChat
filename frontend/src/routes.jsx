@@ -30,7 +30,8 @@ const RouterApp = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={isAuthenticated ? <DefaultPage /> : <Navigate to="/login" />}>
-					<Route index element={<ChatPage />}/>
+					<Route index element={<ContactPage />}/>		
+					<Route path="/chat/:username/" element={<ChatPage />}/>
 					<Route path="/contact" element={<ContactPage />}/>
 					<Route path="/addcontact" element={<AddContact />}/>
 				</Route>

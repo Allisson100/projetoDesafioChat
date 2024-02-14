@@ -4,6 +4,8 @@ const UserInfosContainerStyled = styled.section`
     width: 30%;
     height: 100%;
     background-color: gray;
+    display: flex;
+    flex-direction: column;
 `;
 
 const HeaderUserInfosStyled = styled.header `
@@ -55,7 +57,21 @@ const HeaderUserInfosStyled = styled.header `
     div:nth-child(5) {grid-area: newGroup;}
 `;
 
+//OUTROS
+
+const AllMessagesContainerStyled = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 export {
 	UserInfosContainerStyled,
-	HeaderUserInfosStyled
+	HeaderUserInfosStyled,
+
+	AllMessagesContainerStyled,
 };

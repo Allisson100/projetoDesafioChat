@@ -4,13 +4,20 @@ import { ButtonContainerStyled, ContactContainerStyled, UserContainerStyled } fr
 import { IoClose } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import webSocketEvents from "../../services/webSocketEmitEvents";
+import { useNavigate } from "react-router";
 
 const CardContacts = ({ username, id }) => {
+
+	const navigate = useNavigate();
 
 	const userAuth = useSelector(state => state.username);
 
 	const handleDeleteContact = () => {
 		webSocketEvents.deleteContactsDb({id, username: userAuth});
+	};
+
+	const handleMessage = () => {
+		navigate(`/chat/${username}`);
 	};
 
 	return (
@@ -21,7 +28,7 @@ const CardContacts = ({ username, id }) => {
 				<IoClose  onClick={handleDeleteContact}/>
 			</UserContainerStyled>
 
-			<ButtonContainerStyled>
+			<ButtonContainerStyled onClick={handleMessage}>
 				<h3>Conversar</h3>
 				<FaRegMessage />
 			</ButtonContainerStyled>
