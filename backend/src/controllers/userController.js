@@ -81,6 +81,16 @@ const userController = {
 	addContact: async(userToAdd, userAuth) => {
 		try {
 
+			const user = await usersCollection.findOne({
+				username: userAuth
+			});
+
+			const findContact = user.contacts.some(obj => obj.contactName === userToAdd);
+
+			if(findContact) {
+				return "userAlreadyAddedToContactList";
+			}
+
 			const result = await usersCollection.updateOne(
 				{ username: userAuth },
 				{ $push: { contacts: {  _id: new ObjectId(), contactName: userToAdd } } },

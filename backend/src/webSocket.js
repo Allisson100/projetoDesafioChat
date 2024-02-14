@@ -71,8 +71,6 @@ io.on("connection", (socket) => {
 	socket.on("find_user", async (username) => {
 		const user = await userController.findUserDb(username);
 
-		console.log("BAACVK", user);
-
 		if(user) {
 			socket.emit("find_user_success", user.username);
 		} else {
@@ -113,7 +111,9 @@ io.on("connection", (socket) => {
 	socket.on("add_contact", async ({userToAdd , userAuth}) => {
 		const result = await userController.addContact(userToAdd, userAuth);
 
-		if(result.modifiedCount) {
+		if(result === "userAlreadyAddedToContactList") {
+			socket.emit("add_contact_user_already_added_to_contact_list");
+		} else if (result.modifiedCount) {
 			socket.emit("add_contact_success", userAuth);
 		} else {
 			socket.emit("add_contact_error");
