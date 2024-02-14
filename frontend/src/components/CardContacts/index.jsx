@@ -1,6 +1,6 @@
 import { FaUserCircle } from "react-icons/fa"; //userfoto
 import { FaRegMessage } from "react-icons/fa6"; //message
-import { ButtonContainer, ContactContainerStyled, UserContainerStyled } from "./styles";
+import { ButtonContainerStyled, ContactContainerStyled, UserContainerStyled } from "./styles";
 import { IoClose } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import webSocketEvents from "../../services/webSocketEmitEvents";
@@ -21,10 +21,10 @@ const CardContacts = ({ username, id }) => {
 				<IoClose  onClick={handleDeleteContact}/>
 			</UserContainerStyled>
 
-			<ButtonContainer>
+			<ButtonContainerStyled>
 				<h3>Conversar</h3>
 				<FaRegMessage />
-			</ButtonContainer>
+			</ButtonContainerStyled>
 		</ContactContainerStyled>
 	);
 };

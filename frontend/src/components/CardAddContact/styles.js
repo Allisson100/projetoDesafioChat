@@ -23,22 +23,6 @@ const UserContainerStyled = styled.div`
         height: 30px;
     }
 
-    svg:last-child {
-        width: 25px;
-        height: 25px;
-        color: red;
-        cursor: pointer;
-        transition: 0.2s;
-
-        &:hover {
-            transform: scale(1.1);
-        }
-
-        &:active {
-            transform: scale(0.9);
-        }
-    }
-
     h3 {
         font-size: 1.8rem;
         word-break: break-word;
@@ -70,5 +54,5 @@ const ButtonContainerStyled = styled.div`
 export {
 	ContactContainerStyled,
 	UserContainerStyled,
-	ButtonContainerStyled,
+	ButtonContainerStyled
 };

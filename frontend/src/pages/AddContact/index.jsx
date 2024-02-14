@@ -6,7 +6,10 @@ import ContactPageContainer from "../../components/Containers/ContactPageContain
 import { IconAndInputContainerStyled } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { startLoading } from "../../store/reducers/loading";
+import { removeUser } from "../../store/reducers/addUser";
 import webSocketEvents from "../../services/webSocketEmitEvents";
+import LoadingAnimation from "../../components/LoadingAnimation";
+import CardAddContact from "../../components/CardAddContact";
 
 const AddContact = () => {
 
@@ -16,6 +19,7 @@ const AddContact = () => {
 	console.log(loading, userFound);
 
 	const handleSearch = () => {
+		dispatch(removeUser());
 		dispatch(startLoading());
 		webSocketEvents.findUserDb(formik.values.findUser);
 		formik.resetForm();
@@ -46,7 +50,14 @@ const AddContact = () => {
 						onClick={handleSearch}
 					/>
 				</IconAndInputContainerStyled>
-				
+				{loading &&
+					<LoadingAnimation />
+				}
+				{userFound &&
+					<CardAddContact 
+						username={userFound}
+					/>
+				}
 			</ContactInfosContainer>
 		</ContactPageContainer>
 		
