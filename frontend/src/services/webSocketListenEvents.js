@@ -70,3 +70,13 @@ socket.on("find_user_error", () => {
 	alert("Esse usuário não existe!");
 	store.dispatch(stopLoading());
 });
+
+socket.on("add_contact_success", (username) => {
+	webSocketEvents.getContactsDb(username);
+	alert("Usuário adicionado com sucesso!");
+	store.dispatch(removeUser());
+});
+
+socket.on("add_contact_error", () => {
+	alert("Erro ao adicionar usuário, tente novamente mais tarde!");
+});

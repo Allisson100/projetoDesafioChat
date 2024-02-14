@@ -76,6 +76,21 @@ const userController = {
 		} catch (error) {
 			console.log(error);
 		}
+	},
+
+	addContact: async(userToAdd, userAuth) => {
+		try {
+
+			const result = await usersCollection.updateOne(
+				{ username: userAuth },
+				{ $push: { contacts: {  _id: new ObjectId(), contactName: userToAdd } } },
+			);
+
+			return result;
+			
+		} catch (error) {
+			console.log(error);
+		}
 	}
 };
 

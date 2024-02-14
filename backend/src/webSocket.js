@@ -109,4 +109,14 @@ io.on("connection", (socket) => {
 			socket.emit("get_user_messages_error");
 		}
 	});
+
+	socket.on("add_contact", async ({userToAdd , userAuth}) => {
+		const result = await userController.addContact(userToAdd, userAuth);
+
+		if(result.modifiedCount) {
+			socket.emit("add_contact_success", userAuth);
+		} else {
+			socket.emit("add_contact_error");
+		}
+	});
 });

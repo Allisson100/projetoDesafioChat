@@ -2,11 +2,14 @@ import { FaPlus } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa"; //userfoto
 import { ButtonContainerStyled, ContactContainerStyled, UserContainerStyled } from "./styles";
 import webSocketEvents from "../../services/webSocketEmitEvents";
+import { useSelector } from "react-redux";
 
 const CardAddContact = ({ username }) => {
 
+	const userAuth = useSelector(state => state.username);
+
 	const handleAddUserToContacts = () => {
-		webSocketEvents.addContactDb(username);
+		webSocketEvents.addContactDb({userToAdd: username, userAuth: userAuth});
 	};
 
 	return (
