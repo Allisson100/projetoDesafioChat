@@ -1,6 +1,8 @@
 import { socket } from "../common/config/webSocketConnection";
 import store from "../store";
+import { removeUser, userFound } from "../store/reducers/addUser";
 import { addTokenCookie, getTokenCookie } from "../store/reducers/auth";
+import { stopLoading } from "../store/reducers/loading";
 import { getUserContactsDb } from "../store/reducers/userContacts";
 import { getUserMessagesDb } from "../store/reducers/userMessages";
 import localStorageMethods from "../utils/localStorageMethods";
@@ -56,4 +58,15 @@ socket.on("delete_user_contacts_success", (username) => {
 
 socket.on("delete_user_contacts_error", () => {
 	alert("Erro ao deletar contato!");
+});
+
+socket.on("find_user_success", (username) => {
+	store.dispatch(userFound(username));
+	store.dispatch(stopLoading(username));
+});
+
+socket.on("find_user_error", () => {
+	store.dispatch(removeUser());
+	alert("Esse usuário não existe!");
+	store.dispatch(stopLoading());
 });

@@ -16,7 +16,7 @@ const webSocketEvents = {
 		socket.emit("auth_user", userLoginDatas);
 	},
 
-	finUserDb: (username) => {
+	findUserDb: (username) => {
 		socket.emit("find_user", username);
 	},
 

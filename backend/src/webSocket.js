@@ -68,6 +68,18 @@ io.on("connection", (socket) => {
 		}
 	});
 
+	socket.on("find_user", async (username) => {
+		const user = await userController.findUserDb(username);
+
+		console.log("BAACVK", user);
+
+		if(user) {
+			socket.emit("find_user_success", user.username);
+		} else {
+			socket.emit("find_user_error");
+		}
+	});
+
 	socket.on("user_contacts", async (username) => {
 		const result = await userController.getUserContactsDb(username);
 

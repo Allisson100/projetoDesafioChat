@@ -5,6 +5,7 @@ import usernameSlice from "./reducers/username";
 import userMessagesSlice from "./reducers/userMessages";
 import userContactsSlice from "./reducers/userContacts";
 import loadingSlice from "./reducers/loading";
+import addUserSlice from "./reducers/addUser";
 
 
 const store = configureStore({
@@ -14,6 +15,7 @@ const store = configureStore({
 		userMessages: userMessagesSlice,
 		userContacts: userContactsSlice,
 		loading: loadingSlice,
+		addUSer: addUserSlice,
 	}
 });
 
